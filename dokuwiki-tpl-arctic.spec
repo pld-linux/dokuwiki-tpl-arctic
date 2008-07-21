@@ -28,10 +28,6 @@ defined sidebar actions.
 
 %prep
 %setup -q -n %{tpl}
-
-rm -f LICENSE # GPL v2
-rm -f *~
-
 cat > INSTALL <<'EOF'
 To activate this template add the following to your conf/local.php file:
 $conf['template'] = '%{tpl}';
@@ -41,7 +37,7 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{tpldir}
 cp -a . $RPM_BUILD_ROOT%{tpldir}
-rm -f $RPM_BUILD_ROOT%{tpldir}/{INSTALL,README}
+rm -f $RPM_BUILD_ROOT%{tpldir}/{COPYING,VERSION,INSTALL,README,style.ini.dist}
 
 # find locales
 sh %{SOURCE1} %{name}.lang
