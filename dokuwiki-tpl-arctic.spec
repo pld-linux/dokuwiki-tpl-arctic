@@ -1,4 +1,4 @@
-%define		_snap	2008-05-04
+%define		_snap	2008-07-30
 %define		_ver	%(echo %{_snap} | tr -d -)
 %define		tpl	arctic
 Summary:	Arctic template for DokuWiki
@@ -9,11 +9,11 @@ Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://www.chimeric.de/_media/projects/dokuwiki/template/arctic/download/template-arctic-%{_snap}.tgz
-# Source0-md5:	2b15ce8d15e39615fabaa1fccdb85da2
+# Source0-md5:	705f5dcb3935c3ea2c1bab6edbfd9235
 Source1:	dokuwiki-find-lang.sh
 URL:		http://www.chimeric.de/projects/dokuwiki/template/arctic
 BuildRequires:	rpmbuild(macros) >= 1.268
-Requires:	dokuwiki >= 20070626
+Requires:	dokuwiki >= 20080505
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
