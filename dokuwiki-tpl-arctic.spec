@@ -1,14 +1,14 @@
-%define		_snap	2008-07-30
-%define		_ver	%(echo %{_snap} | tr -d -)
+%define		snap	2008-07-30
+%define		ver	%(echo %{snap} | tr -d -)
 %define		tpl	arctic
 Summary:	Arctic template for DokuWiki
 Summary(pl.UTF-8):	Szablon Arctic dla Dokuwiki
 Name:		dokuwiki-tpl-%{tpl}
-Version:	%{_ver}
+Version:	%{ver}
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://www.chimeric.de/_media/projects/dokuwiki/template/arctic/download/template-arctic-%{_snap}.tgz
+Source0:	http://www.chimeric.de/_media/projects/dokuwiki/template/arctic/download/template-arctic-%{snap}.tgz
 # Source0-md5:	705f5dcb3935c3ea2c1bab6edbfd9235
 Source1:	dokuwiki-find-lang.sh
 URL:		http://www.chimeric.de/projects/dokuwiki/template/arctic
@@ -17,6 +17,7 @@ Requires:	dokuwiki >= 20080505
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		dokuconf	/etc/webapps/dokuwiki
 %define		dokudir		/usr/share/dokuwiki
 %define		tpldir		%{dokudir}/lib/tpl/%{tpl}
 
@@ -44,6 +45,12 @@ sh %{SOURCE1} %{name}.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+# force css cache refresh
+if [ -f %{dokuconf}/local.php ]; then
+	touch %{dokuconf}/local.php
+fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
